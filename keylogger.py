@@ -20,13 +20,13 @@ def on_click(x, y, button, pressed, path, window, camera):
         if pressed:
             with open(path + 'inputs\\keys.txt', 'a') as file:
                 timeStr = getDateTime()
-                file.write('screenshots\\' + timeStr + ':' +'{0} {1} p {2}\n'.format(x-window["left"],y-window["top"], button))
-                tFS(path + 'screenshots\\' + timeStr, window, camera)
+                file.write('captures\\' + timeStr + ':' +'{0} {1} p {2}\n'.format(x-window["left"],y-window["top"], button))
+                tFS(path + 'captures\\' + timeStr, window, camera)
         else:
             with open(path + 'inputs\\keys.txt', 'a') as file:
                 timeStr = getDateTime()
-                file.write('screenshots\\' + timeStr + ':' +'{0} {1} r {2}\n'.format(x-window["left"],y-window["top"], button))
-                tFS(path + 'screenshots\\' + timeStr, window, camera)
+                file.write('captures\\' + timeStr + ':' +'{0} {1} r {2}\n'.format(x-window["left"],y-window["top"], button))
+                tFS(path + 'captures\\' + timeStr, window, camera)
 
 #def on_scroll(x, y, dx, dy):
 #    global top
@@ -46,8 +46,8 @@ def on_press(keys, path, window, camera, mouseX, mouseY):
         if key == 'Key.delete':
             file.write('End\n')
             sys.exit('delete key pressed')
-        file.write('screenshots\\' + timeStr + ':' + '{0} {1} p {2}'.format(mouseX-window["left"], mouseY-window["top"], key) + '\n')
-        tFS(path + 'screenshots\\' + timeStr, window, camera)
+        file.write('captures\\' + timeStr + ':' + '{0} {1} p {2}'.format(mouseX-window["left"], mouseY-window["top"], key) + '\n')
+        tFS(path + 'captures\\' + timeStr, window, camera)
 
 def on_release(keys, path, window, camera, mouseX, mouseY):
 
@@ -57,8 +57,8 @@ def on_release(keys, path, window, camera, mouseX, mouseY):
         if key == 'Key.delete':
             file.write('End\n')
             sys.exit('delete key pressed')
-        file.write('screenshots\\' + timeStr + ':' + '{0} {1} r {2}'.format(mouseX-window["left"], mouseY-window["top"], key) + '\n')
-        tFS(path + 'screenshots\\' + timeStr, window, camera)
+        file.write('captures\\' + timeStr + ':' + '{0} {1} r {2}'.format(mouseX-window["left"], mouseY-window["top"], key) + '\n')
+        tFS(path + 'captures\\' + timeStr, window, camera)
 
 
 def keyLogger(path, window, camera):
