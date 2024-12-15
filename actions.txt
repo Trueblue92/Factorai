@@ -1,0 +1,22 @@
+Start 1273 35
+captures\2024-12-15_18-11-26-506:1236 21 p x
+captures\2024-12-15_18-11-28-799:351 84 r Button.right
+captures\2024-12-15_18-11-30-156:632 617 p j
+captures\2024-12-15_18-11-32-625:621 381 r Button.left
+captures\2024-12-15_18-11-33-596:179 505 p Button.right
+captures\2024-12-15_18-11-34-834:641 212 r Key.shift
+captures\2024-12-15_18-11-36-066:184 162 r r
+captures\2024-12-15_18-11-36-579:40 289 r Button.left
+captures\2024-12-15_18-11-37-522:618 463 p 0
+captures\2024-12-15_18-11-39-422:404 124 r 7
+captures\2024-12-15_18-11-41-380:218 657 p Button.left
+captures\2024-12-15_18-11-41-532:1121 261 p Key.f5
+captures\2024-12-15_18-11-42-366:877 245 p y
+captures\2024-12-15_18-11-45-230:73 521 p Button.left
+captures\2024-12-15_18-11-45-989:218 335 p x
+captures\2024-12-15_18-11-48-470:675 474 p Button.left
+captures\2024-12-15_18-11-49-598:583 477 p Button.left
+captures\2024-12-15_18-11-52-281:946 627 r Button.left
+captures\2024-12-15_18-11-55-097:437 620 p x
+captures\2024-12-15_18-11-57-213:786 454 p Key.f4
+End
