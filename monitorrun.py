@@ -21,6 +21,7 @@ right, bottom = window.bottomright
 top += 35
 bottom -= 7
 right -= 7
+left += 7
 window = {
     "window" : window,
     "left"   : left,
