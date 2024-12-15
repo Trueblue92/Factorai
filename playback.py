@@ -36,7 +36,7 @@ def extractCommands(filename):
         # Read each line in the file
         for line in file:
             # Print each line
-            if line[0] == 's':
+            if line[0] == 'c':
                 keypress = line.split('\\')[1]
                 timestamp, keypress = keypress.split(':')
                 locX, locY, state, key = keypress.split(' ')
