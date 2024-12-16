@@ -26,12 +26,12 @@ def readActionsfromFile(filename):
             if line[0] == 'E':
                 previous = -1
             # Print each line
-            if line[0] == 'c':
+            if line[0] == 'a':
                 keypress = line.split('\\')[1]
                 timestamp, keypress = keypress.split(':')
                 locX, locY, state, key = keypress.split(' ')
-                locX = int(locX)
-                locY = int(locY)
+                locX = int(locX) + offsetX
+                locY = int(locY) + offsetY
                 key = key.strip()
                 keystrokes.append([locX, locY, state, key])
 

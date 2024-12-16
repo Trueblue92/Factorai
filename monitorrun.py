@@ -1,14 +1,7 @@
-from pynput.keyboard import Listener as  KeyboardListener
-from pynput.mouse import Listener as MouseListener
-from screenshot import takeFactorioScreenshot as tFS
-from keylogger import keyLogger as kL
 from gamecapture import captureGame as cG
-from datetime import datetime
 import pygetwindow as pgw
-import sys
 import dxcam
 import os
-import multiprocessing
 from subprocess import Popen
 
 

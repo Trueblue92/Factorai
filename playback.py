@@ -32,8 +32,10 @@ def runCommands(deltas, keystrokes, keyboard, mouse):
     for index in range(len(keystrokes)):
         if keystrokes[index][3][0] == 'B':
             pressMouse(*keystrokes[index], mouse)
+            print('mouse')
         else:
             pressKey(*keystrokes[index], keyboard, mouse)
+            print('key')
         
         time.sleep(deltas[index])
 
