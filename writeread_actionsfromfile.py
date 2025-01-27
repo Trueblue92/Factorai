@@ -26,6 +26,24 @@ def readActionsfromFile(filename):
             if line[0] == 'E':
                 previous = -1
             # Print each line
+            # if line[0] == 'm':
+            #     keypress = line.split('\\')[1]
+            #     timestamp, keypress = keypress.split(':')
+            #     locX, locY = keypress.split(' ')
+            #     locY = locY.strip()
+            #     locX = int(locX) + offsetX
+            #     locY = int(locY) + offsetY
+            #     keystrokes.append([locX, locY, -1, [-1]])
+            #     if previous != -1:
+            #         now = datetime.strptime(timestamp, '%Y-%m-%d_%H-%M-%S-%f')
+            #         timeDelta = now - previous
+            #         if timeDelta.total_seconds() < 0:
+            #             deltas.append(0)
+            #         else:
+            #             deltas.append(timeDelta.total_seconds())
+            #     previous = datetime.strptime(timestamp, '%Y-%m-%d_%H-%M-%S-%f')
+
+
             if line[0] == 'a':
                 keypress = line.split('\\')[1]
                 timestamp, keypress = keypress.split(':')

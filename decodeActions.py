@@ -104,7 +104,6 @@ def decodeActions(actions):
 #r Button.left
 def decodeAction(encodedAction, timestamp):
     decodedAction = 'action\\'
-    print(encodedAction)
     decodedAction += timestamp + ':'
     decodedAction += str(encodedAction[1]) + ' ' + str(encodedAction[2]) + ' ' #loX locY
     decodedAction += pressRelease_decoding[encodedAction[3]] + ' '
@@ -120,7 +119,6 @@ if __name__ == '__main__':
     import sys
 
     actions, offsetX, offsetY = readEncodedActionFile(sys.argv[1])
-    print(actions)
     decodedActions = decodeActions(actions)
     with open('decodedActions.txt','w') as file:
         file.write('Start ' + offsetX + ' ' + offsetY + '\n')

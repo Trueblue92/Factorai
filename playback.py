@@ -26,13 +26,16 @@ def pressKey(locX, locY, state, key, keyboard, mouse):
     else:
         keyboard.release(key)
 
-    pass
+# def moveMouse(locX, locY, state, key, mouse):
+#     mouse.position = (locX, locY)
     
 def runCommands(deltas, keystrokes, keyboard, mouse):
     for index in range(len(keystrokes)):
         if keystrokes[index][3][0] == 'B':
             pressMouse(*keystrokes[index], mouse)
             print('mouse')
+        # elif keystrokes[index][3][0] == -1:
+        #     moveMouse(*keystrokes[index], mouse)
         else:
             pressKey(*keystrokes[index], keyboard, mouse)
             print('key')
@@ -45,7 +48,7 @@ if __name__ == '__main__':
     mouse = pnp.mouse.Controller()
 
     keystrokes, deltas = readActionsfromFile(sys.argv[1])
-    print(deltas, keystrokes)
+    # print(deltas)
     runCommands(deltas, keystrokes, keyboard, mouse)
 
 

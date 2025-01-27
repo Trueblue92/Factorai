@@ -100,7 +100,6 @@ def encodeActions(actions, deltas):
 #[locX, locY, state, key]
 def encodeAction(action, delta):
     encodedAction = []
-    print(action)
     encodedAction.append(actionPerformed_encoding['True'])
     encodedAction.extend([int(action[0])-int(windowCoords_encoding['x1']), int(action[1])-int(windowCoords_encoding['y1'])]) #locX locY
     encodedAction.append(pressRelease_encoding[action[2]]) #press/release
@@ -111,7 +110,6 @@ def encodeAction(action, delta):
         encodedAction.append(peripheral_encoding['KeyboardKeyCode_encoding'])
         encodedAction.append(KeyboardKeyCode_encoding[action[3]])
     encodedAction.append(int(delta * 1000))
-    print(encodedAction)
     return encodedAction
 
 def encodeNoAction():

@@ -3,3 +3,10 @@
 <p> Tasks: 
     -1. Control the input an output of a window using python.
 </p>
+
+
+python monitorrun.py
+python playback.py .\run1\inputs\keys.txt
+python rewardextractor.py .\run1\capture\ .\run1\rewards\rewards.txt
+python encodeActions.py .\run1\inputs\keys.txt
+python decodeActions.py encodedActions.txt
