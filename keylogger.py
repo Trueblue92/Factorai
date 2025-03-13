@@ -71,14 +71,14 @@ def on_release(keys, path, mouseX, mouseY):
         # tFS(path + 'action\\' + timeStr, window, camera)
 
 
-def keyLogger(path, top, left):
+def keyLogger(path, top, left, width, height):
 
     # window = window
     # camera = camera
     path = path
 
     with open(path + 'inputs\\keys.txt', 'a') as file:
-        file.write('Start ' + str(left) + ' ' + str(top) + '\n')
+        file.write('Start ' + str(left) + ' ' + str(top) + ' ' + str(width) + ' ' + str(height) + '\n')
         # 
 
     with MouseListener(
@@ -101,8 +101,10 @@ if __name__ == '__main__':
 
     print(path)
 
-    window = pgw.getWindowsWithTitle('Factorio 2.0.28')[0]
+    window = pgw.getWindowsWithTitle('Factorio 2.0.39')[0]
     left, top = window.topleft
+    width = window.width
+    height = window.height
 
     # right, bottom = window.bottomright
     # top += 35
@@ -129,4 +131,4 @@ if __name__ == '__main__':
     while tick == last_tick:
         tick = get_tick()
 
-    keyLogger(path, top, left)
+    keyLogger(path, top, left, width, height)

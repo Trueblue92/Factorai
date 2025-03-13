@@ -1,0 +1,11 @@
+{
+  "name": "Rewards",
+  "version": "0.1.2",
+  "factorio_version": "2.0",
+  "title": "Rewards",
+  "author": "Dot-0",
+  "contact": "Private",
+  "homepage": "",
+  "description": "Adds a reward function to the game for an AI gym integration.",
+  "dependencies": ["base >= 1.1"]
+}

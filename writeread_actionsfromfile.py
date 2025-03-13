@@ -18,7 +18,7 @@ def readActionsfromFile(filename):
         # Read each line in the file
         for line in file:
             if line[0] == 'S':
-                _, x, y = line.split(' ')
+                _, x, y, _, _ = line.split(' ')
                 y = y.strip()
                 offsetX = int(x)
                 offsetY = int(y)
@@ -48,21 +48,26 @@ def readActionsfromFile(filename):
                 keypress = line.split('\\')[1]
                 timestamp, keypress = keypress.split(':')
                 locX, locY, state, key = keypress.split(' ')
-                locX = int(locX) + offsetX
-                locY = int(locY) + offsetY
+                locX = int(locX)
+                locY = int(locY)
                 key = key.strip()
                 keystrokes.append([locX, locY, state, key])
 
 
                 if previous != -1:
-                    now = datetime.strptime(timestamp, '%Y-%m-%d_%H-%M-%S-%f')
-                    timeDelta = now - previous
-                    if timeDelta.total_seconds() < 0:
+                    # now = datetime.strptime(timestamp, '%Y-%m-%d_%H-%M-%S-%f')
+                    now = timestamp
+                    # timeDelta = now - previous
+                    timeDelta = int(now) - int(previous)
+                    # if timeDelta.total_seconds() < 0:
+                    if timeDelta < 0:
                         deltas.append(0)
                     else:
-                        deltas.append(timeDelta.total_seconds())
+                        # deltas.append(timeDelta.total_seconds())
+                        deltas.append(timeDelta)
 
-                previous = datetime.strptime(timestamp, '%Y-%m-%d_%H-%M-%S-%f')
+                # previous = datetime.strptime(timestamp, '%Y-%m-%d_%H-%M-%S-%f')
+                previous = timestamp
 
         file.close()
         deltas.append(0)
