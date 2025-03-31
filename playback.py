@@ -39,10 +39,12 @@ def pressKey(locX, locY, state, key, keyboard, mouse):
 #     mouse.position = (locX, locY)
     
 def runCommands(deltas, keystrokes, keyboard, mouse):
-    window = pgw.getWindowsWithTitle('Factorio 2.0.39')[0]
+    window = pgw.getWindowsWithTitle('Factorio 2.0.43')[0]
     window.activate()
     previous_tick = get_tick()
+    print(deltas)
     for index in range(len(keystrokes)):
+
         if keystrokes[index][3][0] == 'B':
             pressMouse(*keystrokes[index], mouse)
             print('mouse ', keystrokes[index][3])
@@ -51,6 +53,9 @@ def runCommands(deltas, keystrokes, keyboard, mouse):
         else:
             pressKey(*keystrokes[index], keyboard, mouse)
             print('key ', keystrokes[index][3])
+        
+        if deltas[index] == 0:
+            continue
         
         current_tick = get_tick()
         while int(current_tick)-int(previous_tick) < deltas[index]:
@@ -68,6 +73,12 @@ if __name__ == '__main__':
     tick_path = "C:\\Users\\mitch\\AppData\\Roaming\\Factorio\\script-output\\tick.txt"
     keystrokes, deltas = readActionsfromFile(sys.argv[1])
     # print(deltas)
+
+    last_tick = get_tick()
+    tick = last_tick
+    while tick == last_tick:
+        tick = get_tick()
+
     runCommands(deltas, keystrokes, keyboard, mouse)
     
 

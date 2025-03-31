@@ -25,17 +25,17 @@ def get_tick():
     else:
         return data[0]   
         
-def on_click(x, y, button, pressed, path):
+def on_click(x, y, button, pressed, file):
     # if x > window["left"] and y > window["top"] and x < window["right"] and y < window["bottom"]:
     if pressed:
-        with open(path + 'inputs\\keys.txt', 'a') as file:
-            timeStr = get_tick()
-            file.write('action\\' + timeStr + ':' +'{0} {1} p {2}\n'.format(x,y, button))
+        # with open(path + 'inputs\\keys.txt', 'a') as file:
+        timeStr = get_tick()
+        file.write('action\\' + timeStr + ':' +'{0} {1} p {2}\n'.format(x,y, button))
             # tFS(path + 'action\\' + timeStr, window, camera)
     else:
-        with open(path + 'inputs\\keys.txt', 'a') as file:
-            timeStr = get_tick()
-            file.write('action\\' + timeStr + ':' +'{0} {1} r {2}\n'.format(x,y, button))
+        # with open(path + 'inputs\\keys.txt', 'a') as file:
+        timeStr = get_tick()
+        file.write('action\\' + timeStr + ':' +'{0} {1} r {2}\n'.format(x,y, button))
                 # tFS(path + 'action\\' + timeStr, window, camera)
 
 #def on_scroll(x, y, dx, dy):
@@ -48,26 +48,27 @@ def on_click(x, y, button, pressed, path):
 #        file.write(timeStr + ':' +'({0}, {1})({2}, {3})\n'.format(x-left,y-top, dx, dy))
 #        tFS(path + timeStr, window)
        
-def on_press(keys, path, mouseX, mouseY):
+def on_press(keys, mouseX, mouseY, file):
 
-    with open(path + 'inputs\\keys.txt', 'a') as file:
-        timeStr = get_tick()
-        key = str(keys).replace("'", "")
-        if key == 'Key.esc':
-            file.write('End\n')
-            sys.exit('delete key pressed')
-        file.write('action\\' + timeStr + ':' + '{0} {1} p {2}'.format(mouseX, mouseY, key) + '\n')
+    # with open(path + 'inputs\\keys.txt', 'a') as file:
+    timeStr = get_tick()
+    key = str(keys).replace("'", "")
+    if key == 'Key.esc':
+        file.write('End\n')
+        sys.exit('delete key pressed')
+    file.write('action\\' + timeStr + ':' + '{0} {1} p {2}'.format(mouseX, mouseY, key) + '\n')
         # tFS(path + 'action\\' + timeStr, window, camera)
 
-def on_release(keys, path, mouseX, mouseY):
+def on_release(keys, mouseX, mouseY, file):
 
-    with open(path + 'inputs\\keys.txt', 'a') as file:
-        timeStr = get_tick()
-        key = str(keys).replace("'", "")
-        if key == 'Key.esc':
-            file.write('End\n')
-            sys.exit('delete key pressed')
-        file.write('action\\' + timeStr + ':' + '{0} {1} r {2}'.format(mouseX, mouseY, key) + '\n')
+    # with open(path + 'inputs\\keys.txt', 'a') as file:
+    timeStr = get_tick()
+    key = str(keys).replace("'", "")
+    if key == 'Key.esc':
+        file.write('End\n')
+        print('escape key pressed')
+        sys.exit('delete key pressed')
+    file.write('action\\' + timeStr + ':' + '{0} {1} r {2}'.format(mouseX, mouseY, key) + '\n')
         # tFS(path + 'action\\' + timeStr, window, camera)
 
 
@@ -80,28 +81,27 @@ def keyLogger(path, top, left, width, height):
     with open(path + 'inputs\\keys.txt', 'a') as file:
         file.write('Start ' + str(left) + ' ' + str(top) + ' ' + str(width) + ' ' + str(height) + '\n')
         # 
-
-    with MouseListener(
-        on_move = lambda x, y: on_move(x=x, y=y), 
-        on_click= lambda x, y, button, pressed: on_click(x, y, button, pressed, path=path)
-    ) as listener:
-        with KeyboardListener(
-            on_press=lambda event: on_press(event, path=path, mouseX=mouseX, mouseY=mouseY), 
-            on_release=lambda event: on_release(event, path=path, mouseX=mouseX, mouseY=mouseY)
+        with MouseListener(
+            on_move = lambda x, y: on_move(x=x, y=y), 
+            on_click= lambda x, y, button, pressed: on_click(x, y, button, pressed, file=file)
         ) as listener:
-            listener.join()
+            with KeyboardListener(
+                on_press=lambda event: on_press(event, mouseX=mouseX, mouseY=mouseY, file=file), 
+                on_release=lambda event: on_release(event, mouseX=mouseX, mouseY=mouseY, file=file)
+            ) as listener:
+                listener.join()
 
 if __name__ == '__main__':
     import os
     # import dxcam
     import pygetwindow as pgw
 
-    path = os.path.dirname(os.path.abspath(__file__)) + "\\run1\\"
+    path = os.path.dirname(os.path.abspath(__file__)) + "\\runx\\"
     tick_path = "C:\\Users\\mitch\\AppData\\Roaming\\Factorio\\script-output\\tick.txt"
 
     print(path)
 
-    window = pgw.getWindowsWithTitle('Factorio 2.0.39')[0]
+    window = pgw.getWindowsWithTitle('Factorio 2.0.43')[0]
     left, top = window.topleft
     width = window.width
     height = window.height

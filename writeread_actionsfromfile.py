@@ -8,6 +8,53 @@ def writeActionstoFile(filepath, actions, xOffset, yOffset):
         file.write('End')
 
 
+def readActionsfromFileDeltaKeypress(filename):
+    pressedKeys = []
+    keystrokes = []
+    offsetX = 1273
+    offsetY = 35
+    with open(filename, 'r') as file:
+        for line in file:
+            if line[0] == 'S':
+                _, x, y, _, _ = line.split(' ')
+                offsetX = int(x)
+                offsetY = int(y)
+                continue
+            
+            if line[0] == 'E':
+                continue
+            
+            if line[0] == 'a':
+                keypress = line.split('\\')[1]
+                tick, keypress = keypress.split(':')
+                locX, locY, state, key = keypress.split(' ')
+                locX = int(locX)
+                locY = int(locY)
+                tick = int(tick)
+                key = key.strip()
+
+                if state == 'p':
+                    duplicate = False
+                    for pressedKey in pressedKeys:
+                        if key in pressedKey:
+                            duplicate = True
+                    
+                    if duplicate:
+                        continue
+                    
+                    pressedKeys.append([key, len(keystrokes), tick])
+                    keystrokes.append([tick, locX, locY, state, key])
+                else:
+                    for pressedKey in pressedKeys:
+                        if key in pressedKey:
+                            index = pressedKeys.index(pressedKey)
+                            _, pressedIndex, pressedTick = pressedKeys.pop(index)
+                            keystrokes[pressedIndex].append(tick-pressedTick)
+        file.close()
+        return keystrokes
+    
+
+
 def readActionsfromFile(filename):
     previous = -1
     offsetX = 1273
@@ -22,9 +69,10 @@ def readActionsfromFile(filename):
                 y = y.strip()
                 offsetX = int(x)
                 offsetY = int(y)
+                continue
 
             if line[0] == 'E':
-                previous = -1
+                continue
             # Print each line
             # if line[0] == 'm':
             #     keypress = line.split('\\')[1]
@@ -65,6 +113,7 @@ def readActionsfromFile(filename):
                     else:
                         # deltas.append(timeDelta.total_seconds())
                         deltas.append(timeDelta)
+
 
                 # previous = datetime.strptime(timestamp, '%Y-%m-%d_%H-%M-%S-%f')
                 previous = timestamp
